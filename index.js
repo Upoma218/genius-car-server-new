@@ -53,7 +53,8 @@ async function run() {
 
         app.post('/orders', async(req, res) => {
             const order = req.body;
-            const result = orderCollection.insertOne(order);
+            const result = await orderCollection.insertOne(order);
+            console.log(result);
             res.send(result);
         })
         app.patch('/orders/:id', async(req, res) => {
@@ -71,7 +72,8 @@ async function run() {
         app.delete('/orders/:id', async(req, res) => {
             const id = req.params.id;
             const query = {_id:ObjectId(id)};
-            const result = orderCollection.deleteOne(query);
+            const result = await orderCollection.deleteOne(query);
+            console.log(result);
             res.send(result);
         })
 
